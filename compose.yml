@@ -1,15 +1,31 @@
-services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
+# --- STAGE 1 ---
+#services:
+#  web:
+#    build: .
+#    command: python manage.py runserver 0.0.0.0:8000
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - .:/app
+#
+#    environment:
+#-- DEV STAGE --
+#- DEBUG=1
+#      - DEBUG=0
+#      - SECRET_KEY=supersecreto
+#      - ALLOWED_HOSTS=*
 
-    environment:
-      #-- DEV STAGE --
-      #- DEBUG=1
-      - DEBUG=0
-      - SECRET_KEY=supersecreto
-      - ALLOWED_HOSTS=*
+# -- STAGE 2 --
+services:
+  backend:
+    build: .
+    expose: ["8000"]
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports: ["8080:80"]
+
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+    depends_on: [backend]
