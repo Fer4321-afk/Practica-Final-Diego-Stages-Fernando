@@ -4,5 +4,6 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.0
 django-debug-toolbar==4.3.0
 django-extensions==3.2.3
-django-browser-reload==1.11.0
+# --DEV STAGE -- 
+#django-browser-reload==1.11.0
 ipython==8.23.0

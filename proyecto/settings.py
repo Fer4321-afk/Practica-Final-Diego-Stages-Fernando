@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     #apps de django
     'theme',
     'tailwind',
-    'django_browser_reload',
+   #--DEV STAGE -- 
+    #'django_browser_reload',
     # Estilos en formularios
     'widget_tweaks',
    
